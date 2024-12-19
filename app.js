@@ -5,26 +5,46 @@ const addTask = () => {
     if (text ) {
      tasks.push({text:text,completed:false});
      updateTasksList();
+     updateStatus();
      taskInput.value = ""; // Clear the input field after adding the task
     }
 };
 const toggleTaskComplete=(index)=>{
  tasks[index].completed=!tasks[index].completed;
     updateTasksList();
+    updateStatus();
 
 };
 const deleteTask=(index)=>{
     tasks.splice(index,1);
     updateTasksList();
+    updateStatus();
 }
 const updateTask=(index)=>{
 const taskInput = document.getElementById("taskInput");
 taskInput.value=tasks[index].text;
 tasks.splice(index,1);
 updateTasksList();
+updateStatus();
 taskInput.focus(); // Optionally, focus on the input field for convenience
 
 }
+const updateStatus = () => {
+    const completedTasks = tasks.filter(task => task.completed).length;
+    const totalTasks = tasks.length;
+
+    // Prevent division by zero
+    const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+    // Update the progress bar width
+    const progressBar = document.getElementById("progress");
+    progressBar.style.width = `${progress}%`;
+
+    // Update the stats numbers
+    const statsNumbers = document.getElementById("numbers");
+    statsNumbers.textContent = `${completedTasks} / ${totalTasks}`;
+};
+
 const updateTasksList = () => {
     const tasksList = document.getElementById("task-list");
     tasksList.innerHTML = "";

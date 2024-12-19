@@ -12,7 +12,7 @@
     --text:#fff;
     --purple:#e8d109cb;
     --inputcolor:#e9df7fcb;
-    --teal:#8dff54;
+    --teal:#54eeff;
 }
 body{
     background-color:var(--background) ;
@@ -53,12 +53,20 @@ body{
 
 }
 
-#progressBar{
-    width: 100%;
+#progressBar {
+    width: 250%;
     height: 10px;
-    background-color: var(--secondaryBackground);
+    background-color: #e0e0e0;
     border-radius: 5px;
-    margin-top: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#progress {
+    height: 100%;
+    background-color: var(--teal);
+    width: 0%; /* Start at 0% */
+    transition: width 0.3s ease; /* Smooth animation */
 }
 #numbers{
 width: 100px;
